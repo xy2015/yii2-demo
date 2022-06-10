@@ -44,8 +44,12 @@ class Supplier extends ActiveRecord
         //默认搜索条件
         if(!isset($params['sort'])) {
             $query->orderby("id DESC");
+        }else{
+            unset($params['sort']);
         }
-
+        if (isset($params['page'])){
+            unset($params['page']);
+        }
         $this->formatQueryParams($query, $params,$defaultParams);
         return $dataProvider;
     }

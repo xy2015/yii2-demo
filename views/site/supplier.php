@@ -47,7 +47,7 @@ $output .= Html::endForm();
             'attribute' => 't_status',
             'filter' => \app\models\Supplier::getStatus()
         ]
-    ]
+    ],
 ]); ?>
 </div>
 <?php
@@ -63,6 +63,7 @@ $(document).on('click','.select-on-check-all',function (){
 
 //selected all page data
 $(document).on('click','#all-selected1',function (){
+    $('table').find(":checkbox").prop('checked', true);
     var ids = $('.grid-view,.grid-view2').yiiGridView('getSelectedRows');
     if (ids.length){
         $('.messages-bar').html('<div id="w0-message-0" class="alert-success alert-message alert alert-dismissible" role="alert">All Conversations in this search have been selected. <a href="javascript:void(0);" id="clear-selected1">Clear selection</a><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button></div>');   
@@ -87,6 +88,7 @@ $(document).on('click', 'button[data-action-before=get_ids]', function () {
 $(document).on('submit','form.ajax-form',function(event){
     var target = $(this);
     var ids = $("#ids").val();
+    console.log(ids);
     $.ajax({
         url:target.attr("action"),
         type:target.attr("method"),
